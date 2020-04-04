@@ -14,7 +14,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 )
 
-
+// https://github.com/facebook/create-react-app/issues/8490
 class App extends Component {
   render() {
     return (

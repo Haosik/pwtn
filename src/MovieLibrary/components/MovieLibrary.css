@@ -3,26 +3,48 @@
 }
 
 .ML-logo {
-  animation: ML-logo-spin infinite 8s ease;
-  height: 80px;
+  animation: ML-logo-spin infinite 8s linear;
+  height: 2.5em;
 }
 
 .ML-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #000;
+  height: 70px;
+  padding-left: 3%;
   color: white;
 }
 
 .ML-title {
-  font-size: 1.5em;
+  font-size: 2.2em;
+  margin-left: 10px;
+  color: #E50914;
 }
 
 .ML-intro {
+  padding: 2.5em 0;
   font-size: large;
 }
 
 @keyframes ML-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(720deg); }
+  0% {
+    transform: translateY(0) rotateX(0) scale(1);
+    transform-origin: 50% 0%;
+  }
+
+  10% {
+    transform: translateY(-100%) rotateX(-180deg) scale(1);
+    transform-origin: 50% 100%;
+  }
+
+  20% {
+    transform: translateY(0) rotateX(0) scale(1);
+    transform-origin: 50% 0%;
+  }
+
+  100% {
+    transform: translateY(0) rotateX(0) scale(1);
+    transform-origin: 50% 0%;
+  }
 }

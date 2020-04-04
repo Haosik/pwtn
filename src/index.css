@@ -1,5 +1,35 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color: #fff;
+  background-color: #181818;
+}
+
+body.fixed {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

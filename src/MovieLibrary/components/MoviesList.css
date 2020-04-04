@@ -4,29 +4,122 @@
   justify-content: flex-start;
 }
 
-.movies-list > .items {
-  width: 20%;
+.movies-list>.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+body.fixed .movies-list>.items {
+  filter: blur(10px);
 }
 
 .expanded-movie-item {
-  width: 80%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.expanded-outer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.expanded-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 700px;
+  margin: 50px 25px 0;
+}
+
+.expanded-content {
+  padding: 30px;
+  margin-bottom: 50px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(56, 56, 56, 1) 51%, rgba(0, 0, 0, 1) 100%);
+  animation: fadein .5s;
+}
+
+.expanded-bg {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.expanded-close {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  right: 5px;
+  padding: 5px;
+  font-size: 1.2em;
+  display: inline-block;
+  color: #ccc;
 }
 
 .expanded-movie-item h4 {
   display: inline;
 }
 
-.expanded-movie-item  > .description {
+.expanded-movie-item>.description {
   display: flex;
   flex-direction: column;
 }
 
 .movie-list-item {
+  position: relative;
+  z-index: 1;
+  width: 18%;
+  margin: 20px 0.5%;
+  padding-bottom: 5px;
+  min-width: 290px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: transparent;
   cursor: pointer;
+  transition: transform 0.2s, background-color 0.1s;
+  backface-visibility: hidden;
+  will-change: transform;
+  outline: none;
+}
+
+.movie-list-item:hover,
+.movie-list-item:focus {
+  z-index: 2;
+  transform: scale(1.25);
+  background-color: #000;
 }
 
 .movie-list-item.selected {
   text-decoration: underline;
+}
+
+.backdrop {
+  max-width: 100%;
+}
+
+.vote {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  right: 5px;
+  font-size: 1.2em;
+  text-shadow: 1px -1px rgba(0, 0, 0, 0.7);
+}
+
+.star {
+  font-size: 0.7em;
+  text-shadow: none;
+  vertical-align: top;
 }
