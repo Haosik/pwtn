@@ -11,14 +11,13 @@ function dispatchMovies(movies) {
   };
 }
 
-// For next task
-// export function fetchMovies(pageNumber) {
-//   return (dispatch) => {
-//     fetch(`${playingNowLink}${pageNumber}`)
-//       .then((data) => data.json())
-//       .then(({ results }) => dispatch(dispatchMovies(results)));
-//   };
-// }
+export function fetchMovies(pageNumber) {
+  return (dispatch) => {
+    fetch(`${playingNowLink}${pageNumber}`)
+      .then((data) => data.json())
+      .then(({ results }) => dispatch(dispatchMovies(results)));
+  };
+}
 
 export function initialFetchMovies() {
   return (dispatch) => {
@@ -26,7 +25,7 @@ export function initialFetchMovies() {
       fetch(`${playingNowLink}${i}`)
         .then((data) => data.json())
         .then(({ results }) => {
-          dispatch(dispatchMovies(results))
+          dispatch(dispatchMovies(results));
         });
     }
   };
