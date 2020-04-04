@@ -14,6 +14,7 @@ export default class MoviesList extends PureComponent {
 
   state = {
     selectedMovie: null,
+    sortedMovies: this.props.movies
   };
 
   handleSelectMovie = (item) => this.setState({ selectedMovie: item });
@@ -23,11 +24,40 @@ export default class MoviesList extends PureComponent {
     this.setState({ selectedMovie: null });
   };
 
-  handleSortingChange = (sortingType) => console.log(sortingType);
+  handleSortingChange = (sortingType) => {
+    let sortedMovies = [...this.props.movies];
+    switch (sortingType) {
+      case "name_asc":
+        sortedMovies = sortedMovies.sort((a, b) => {
+          const titleA = a.title.toUpperCase();
+          const titleB = b.title.toUpperCase();
+          if (titleA < titleB) return -1;
+          if (titleA > titleB) return 1;
+          return 0;
+        });
+        break;
+      case "name_desc":
+        sortedMovies = sortedMovies.sort((a, b) => {
+          const titleA = a.title.toUpperCase();
+          const titleB = b.title.toUpperCase();
+          if (titleA < titleB) return 1;
+          if (titleA > titleB) return -1;
+          return 0;
+        });
+        break;
+      case "rating":
+        sortedMovies = sortedMovies.sort(
+          (a, b) => a.vote_average - b.vote_average
+        );
+        break;
+      default:
+        break;
+    }
+    this.setState({ sortedMovies });
+  };
 
   render() {
-    const { movies } = this.props;
-    const { selectedMovie } = this.state;
+    const { sortedMovies, selectedMovie } = this.state;
 
     return (
       <div className="movies-list">
@@ -36,7 +66,7 @@ export default class MoviesList extends PureComponent {
             <span>Sort by: </span>
             <SortingOptions onChange={this.handleSortingChange} />
           </div>
-          {movies.map((movie) => (
+          {sortedMovies.map((movie) => (
             <MovieListItem
               key={movie.id}
               movie={movie}
