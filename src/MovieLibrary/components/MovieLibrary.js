@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchTopRatedMovies } from "../store/actions";
+import { initialFetchMovies } from "../store/actions";
 
 import glassesIcon from "./3dglasses.svg";
 import "./MovieLibrary.css";
@@ -11,12 +11,12 @@ import MoviesList from "./MoviesList";
 class MovieLibrary extends Component {
   static propTypes = {
     movies: PropTypes.array,
-    fetchTopRatedMovies: PropTypes.func,
+    initialFetchMovies: PropTypes.func,
   };
 
   componentDidMount() {
-    const { fetchTopRatedMovies } = this.props;
-    fetchTopRatedMovies();
+    const { initialFetchMovies } = this.props;
+    initialFetchMovies();
   }
 
   render() {
@@ -39,5 +39,5 @@ export default connect(
   (state) => ({
     movies: getMovies(state),
   }),
-  { fetchTopRatedMovies }
+  { initialFetchMovies }
 )(MovieLibrary);

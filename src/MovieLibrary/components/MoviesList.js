@@ -14,7 +14,7 @@ export default class MoviesList extends PureComponent {
 
   state = {
     selectedMovie: null,
-    sortedMovies: this.props.movies
+    sortedMovies: null,
   };
 
   handleSelectMovie = (item) => this.setState({ selectedMovie: item });
@@ -58,6 +58,7 @@ export default class MoviesList extends PureComponent {
 
   render() {
     const { sortedMovies, selectedMovie } = this.state;
+    const moviesToRender = sortedMovies || this.props.movies;
 
     return (
       <div className="movies-list">
@@ -66,7 +67,7 @@ export default class MoviesList extends PureComponent {
             <span>Sort by: </span>
             <SortingOptions onChange={this.handleSortingChange} />
           </div>
-          {sortedMovies.map((movie) => (
+          {moviesToRender.map((movie) => (
             <MovieListItem
               key={movie.id}
               movie={movie}
@@ -105,7 +106,9 @@ class MovieListItem extends Component {
         onClick={this.handleClick}
         tabIndex="1"
       >
-        <TMDBImage src={backdrop_path} className="backdrop" />
+        {backdrop_path && (
+          <TMDBImage src={backdrop_path} className="backdrop" />
+        )}
         {title}
         <span className="vote">
           {vote_average}

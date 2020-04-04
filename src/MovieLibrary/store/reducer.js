@@ -11,7 +11,7 @@ export default function movies(state = initialState, action) {
     case FETCH_MOVIES:
       return {
         ...state,
-        movies: payload
+        movies: state.movies.concat(payload)
       }
 
     default:

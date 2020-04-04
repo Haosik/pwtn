@@ -32,7 +32,7 @@ const ExpandedMovieItem = ({
       <div className="expanded-outer">
         <div className="expanded-inner">
           <div className="expanded-content">
-            <TMDBImage src={poster_path} className="poster" />
+            {poster_path && <TMDBImage src={poster_path} className="poster" />}
             <div className="description">
               <h2>
                 {title}({original_title})
